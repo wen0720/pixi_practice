@@ -1,0 +1,913 @@
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+@import url(https://fonts.googleapis.com/css?family=Cinzel);
+@import 'reset';
+@import 'grid';
+
+$mainColor:#2597d3;
+$fontColor1:#fff;
+$fontSmall:15px;
+$titleBigFont:50px;
+$titleNormalFont:32px;
+$engFont:'Cinzel', serif;
+
+
+/*basic setting*/
+body{
+	font-family: Arial ,'Noto Sans TC',"微軟正黑體";
+}
+*{
+	box-sizing: border-box;
+}
+.inbox{
+	width:100%;
+	max-width: 1320px;
+	margin:0 auto;
+	position:relative;
+	@include com1400(){
+		width:90%;
+	}
+}
+
+
+p, span{
+	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+   	// font-size:$fontSmall;
+}
+img{
+	max-width:100%;
+}
+
+.highlight{
+	background: #fffaa9;
+	cursor: pointer;
+}
+
+/*header*/
+header.banner{
+	height:100vh;
+	background-image:url(../images/bg_banner02.jpg);
+	background-size:cover;
+	position:relative;
+	z-index:2;
+	background-attachment:fixed;
+	background-position: center;
+	transition: background-position 1s, background-size 2.5s;
+	transition-timing-function:cubic-bezier(0.28, 1.13, 0.73, 0.83);
+	@include phone480(){
+		background-attachment:scroll;
+	}
+	nav.open{
+		top:0;
+		bottom:0;
+		background:#2597d3;
+		opacity:0.8;
+		ul{
+			display:block;
+			position:absolute;
+			top:50%;
+			left: 50%;
+			margin:-218px 0 0 -65px;
+			li{
+				display:block;
+				margin:0 auto;
+				a{
+					font-size: 24px;
+					color:#fff;
+				}
+			}
+		}
+		.phoneBtn{
+			span{
+				transition:all 0.35s ease-in-out;
+				background: rgba(255,255,255,1);
+				&:nth-child(1){
+					transform:translateY(12px) rotate(45deg);
+				}
+				&:nth-child(2){
+					background-color: rgba(255,255,255,0);
+				}
+				&:nth-child(3){
+					transform:translateY(-11px) rotate(-45deg)
+				}
+			}
+		}
+	}
+	nav{
+		width:100%;
+		position:fixed;
+		z-index:9999;
+		transition:all 0.35s ease-in-out;
+		.phoneBtn{
+			display:none;
+			@include pad610(){
+				display:block;
+				float:right;
+				padding:7px 20px;
+				height:60px;
+				span{
+					height:2px;
+					width:30px;
+					background:$mainColor;
+					display:block;
+					margin:10px 0 0;
+				}
+			}
+		}
+		ul{
+			max-width:1740px;
+			margin:0 auto;
+			text-align:right;
+			@include pad610(){
+				display:none
+			}
+			li{
+				display:inline-block;
+				width:130px;
+				position:relative;
+				a{
+					display:block;
+					color:$mainColor;
+					font-size:15px;
+					font-weight: 300;
+					padding:40px 0;
+					text-align:center;
+					letter-spacing: 1px;
+					&:after{
+						content: "";
+					    position: absolute;
+					    width: 0;
+					    height: 2px;
+					    background-color: rgba(37,151,211,0.8);
+					    left: 26px;
+					    top: -2px;
+					    bottom: 0;
+					    margin: auto;
+					    transition:all 0.35s cubic-bezier(0.72, 0, 0, 0.99);
+					}
+				}
+				a:hover:after,a.active:after{
+					width:58%;
+				}
+
+			}
+		}
+		&:after{
+			content:"";
+			position:absolute;
+			width:100%;
+			height: 70px;
+			background: $mainColor;
+			opacity:0.9;
+			top:-70px;
+			z-index: -1;
+			transition:all 0.35s ease-in-out;
+			opacity:0;
+			@include pad610(){
+				height:60px;
+				top:-60px;
+			}
+		}
+	}
+	nav.active{
+		ul li a{
+			padding:30px 0;
+			color:#eee;
+			@include pad610(){
+				padding: 40px 0;
+			}
+			&:hover,&.active{
+				color:#f4e320;
+			}
+			&:hover:after,&.active:after{
+				background-color: rgba(244,227,32,0.8);;
+			}
+		}
+		&:after{
+			top:0;
+			opacity: 0.85;
+		}
+		.phoneBtn span{
+			background: rgba(255,255,255,1);
+		}
+	}
+	.slogan{
+		position:absolute;
+		left:0;
+		right:0;
+		bottom:0;
+		top:50%;
+		margin:-80px 0 0 0;
+		text-align:center;
+		color:$mainColor;
+		padding:0 20px;
+		h1{
+			font-weight: 300;
+			letter-spacing: 6px;
+			span{
+				font-size:50px;
+				@include phone500(){
+					font-size: 34px;
+				}
+				@include phone375(){
+					font-size: 32px;
+				}
+				@include phone320(){
+					font-size: 28px;
+				}
+			}
+		}
+		.aniTxt:nth-child(2) .letters{
+			font-family: 'Raleway', sans-serif;
+			font-size:22px;
+			margin:-4px 0 0;
+			@include phone500(){
+				font-size: 16px;
+			}
+		}
+		.aniTxt:last-child .letters{
+			font-size:16px;
+			padding:12px 0 0;
+			letter-spacing:2px;
+			@include phone500(){
+				font-size: 14px;
+			}
+		}
+	}
+	&:after{
+		content:"";
+		background-image: url(../images/bannerCover.png);
+		background-size:cover;
+		position:absolute;
+		bottom:-2px;
+		left:0;
+		right:0;
+		height:168px;
+		@include com1400(){
+			height:100px;
+		}
+	}
+}
+
+/*container*/
+.container {
+	background:#fbfbfb;
+	// position:relative;
+}
+
+/*box01樣式的大標與內文設定*/
+.box01{
+	background: #fbfbfb;
+	.title{
+		padding:100px 0 0 20px;
+		color:$mainColor;
+		transition:all 1s ease-in-out;
+		@include com1400(){
+			padding: 100px 0 0 10px;
+		}
+		h2{
+		font-size:$titleNormalFont;
+		font-weight:300;
+		letter-spacing:3px;
+		margin-left:-3px;
+		}
+		h2:first-letter{
+			font-size:$titleBigFont;
+		}
+		span{
+			font-family:$engFont;
+			font-weight: bold;
+			margin:0 0 3px 0;
+			font-size:$fontSmall;
+			display:inline-block;
+		}
+	}
+	.txtbox{
+		p{
+		color:#2e2e2e;
+		font-size:$fontSmall;
+		line-height:1.8;
+		margin:15px 0 0;
+		}
+	}
+}
+
+/*關於我about*/
+.about{
+	position:relative;
+	.title{
+		@include pad900(){
+			padding:200px 0 0 10px;
+		}
+		@include phone480(){
+			padding: 200px 0 0;
+		}
+	}
+	.title:after{
+		content:"01";
+		font-size:216px;
+		opacity:0.1;
+		font-family:$engFont;
+		position:absolute;
+		top:-24px;
+		left:230px;
+		font-weight: bold;
+		@include pad900(){
+			top:36px;
+			left:160px;
+		}
+		@include pad768(){
+			left: 70px;
+		}
+		@include pad610(){
+			left: 0px;
+		}
+	}
+	.txtbox{
+		width:100%;
+		max-width: 830px;
+		padding:0px 40px 180px 20px;
+		position:relative;
+		@include com1400(){
+			width:56%;
+			padding:0px 40px 180px 10px;
+		}
+		@include com1200(){
+			padding:0 40px 80px 10px;
+		}
+		@include pad900(){
+			width:76%;
+		}
+		@include phone480(){
+			width:100%;
+			padding: 0 0 40px 0;
+		}
+		p{
+			@include phone480(){
+				margin:0;
+				&:not(:last-child) {
+					display: inline;
+				}
+			}
+		}
+	}
+	figure{
+		position:absolute;
+		right:0px;
+		top:-40px;
+		transition:all 1.5s ease-in-out;
+		@include com1200(){
+			right:-40px;
+			text-align: right;
+		}
+		@include pad900(){
+			right:-2%;
+			top:-10px;
+		}
+		@include pad700(){
+			top:0px;
+		}
+		img{
+			@include com1200(){
+				max-width:90%;
+			}
+			@include pad900(){
+				max-width:70%;
+			}
+		}
+	}
+}
+
+
+/*box02*/
+.box02{
+	.title{
+		padding:40px 0 0 0;
+		text-align:center;
+		position:relative;
+		h2{
+			font-size:$titleNormalFont;
+			font-weight:300;
+			letter-spacing:3px;
+		}
+		h2:first-letter{
+			font-size:$titleBigFont;
+		}
+		span{
+			font-family:$engFont;
+			font-weight: bold;
+			font-size: $fontSmall;
+			display:block;
+		}
+	}
+	.title:before{
+		content:'02';
+		font-family:$engFont;
+		font-size:30px;
+		position:absolute;
+		bottom:76px;
+		right:0;
+		left:0;
+	}
+}
+
+/*技能skills*/
+.skill{
+	padding:70px 0;
+	background: url(../images/bg_skill.jpg) center;
+	background-size: cover;
+	background-attachment:fixed;
+	color:#fff;
+	@include com1400{
+		padding: 40px 0;
+	}
+	@include phone480{
+		padding: 20px 0;
+	}
+	.title{
+		color:#fff;
+	}
+	ul.itembox{
+		padding:80px 0 0 0;
+		@include com1400(){
+			padding:60px 0 0 0;
+		}
+		@include pad700(){
+			padding:40px 0 0 0;
+		}
+		@include phone480{
+			padding:10px 0 0 0;
+		}
+		li.item:nth-child(odd){
+			margin:0 6% 40px 0;
+			@include pad700(){
+				margin:30px auto
+			}
+		}
+		li.item{
+			width:47%;
+			margin:0 0 40px 0;
+			float: left;
+			@include pad700(){
+				width:90%;
+				float: none;
+				margin: 30px auto;
+			}
+			@include phone480(){
+				width:100%;
+			}
+			h3{
+				font-family:$engFont;
+				font-size:22px;
+				letter-spacing:2px;
+				position:relative;
+				&:after{
+					content:'';
+					background:url(../images/bg_title.png) repeat-x;
+					height:11px;
+					width:70px;
+					position:absolute;
+					bottom:6px;
+					margin:0 0 0 30px;
+				}
+			}
+			.txtbox{
+				position:relative;
+				padding:10px 0;
+				// display:table-cell;
+				img{
+					width:90px;
+					vertical-align:middle;
+					@include com1200(){
+						width:80px;
+					}
+					@include phone480(){
+						width:70px;
+					}
+				}
+				p{
+					display:inline-block;
+					vertical-align:middle;
+					width:calc(100% - 94px);
+					font-size:$fontSmall;
+					line-height: 1.8;
+					letter-spacing: 0.15em;
+					@include phone480(){
+						line-height: 1.6;
+						margin:0 0 0 10px;
+					}
+					@include phone320(){
+						font-size: 14px;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*作品work*/
+.work{
+	position:relative;
+	z-index:1;
+	padding:0 0 70px 0;
+	@include phone480(){
+		padding: 0 0 20px 0;
+	}
+	.title{
+		@include pad768(){
+		padding: 0 0 30px 10px;
+		}
+		&:after{
+			content:"03";
+			font-size:216px;
+			opacity:0.1;
+			font-family:$engFont;
+			position:absolute;
+			font-weight: bold;
+			top:-50px;
+			left:190px;
+			@include com1200(){
+				left:110px;
+			}
+			@include pad768(){
+				left:20px;
+			}
+		}
+	}
+ 	.txtbox{
+		// max-width:480px;
+		width:36.4%;
+		float:left;
+		padding:0 10px 0 20px;
+		@include com1400(){
+			padding: 0 30px 0 10px;
+		}
+		@include pad900(){
+			width:100%;
+		}
+		@include pad610(){
+			float:none;
+			padding:0;
+		}
+		ul{
+			li{
+				display:none;
+				h3{
+					font-size:20px;
+					color:#2e2e2e;
+					font-weight: normal;
+					margin: 75px 0 0 0;
+					@include pad610(){
+						margin: 45px 0 0 0;
+					}
+				}
+			}
+			li.active{
+				display:block;
+			}
+		}
+		.btnbox{
+			 text-align:right;
+			 padding:25px 0 0;
+			 @include pad900(){
+			 	text-align:center;
+			 }
+			a{
+				display:inline-block;
+				padding:10px 5px;
+				float:right;
+				@include pad900(){
+					float:none;
+					margin:0 10px;
+				}
+				img{
+					width:42px;
+				}
+			}
+			a:first-child{
+				position:relative;
+				right:0px;
+				top:40px;
+				@include pad900(){
+					top:0;
+				}
+				&:hover{
+					transform:translateX(-10px);
+				}
+			}
+			a:nth-child(2){
+				position:relative;
+				right:-60px;
+				@include pad900(){
+					right:0;
+				}
+				&:hover{
+					transform:translateX(10px);
+				}
+			}
+		}
+	}
+	.gallery{
+		float:right;
+		width:63.6%;
+		@include pad1024(){
+			width:60%;
+			margin:40px 0 0;
+		}
+		@include pad610(){
+			float:none;
+			width:90%;
+			margin: 0 auto;
+		}
+		ul{
+			position:relative;
+			margin: -100px 0 0 0;
+			@include pad1024(){
+				left:-20px;
+			}
+			@include pad610(){
+				margin:0;
+			}
+			li{
+				position:absolute;
+				transition:all 0.5s cubic-bezier(0.13, 0.37, 0.34, 0.93);
+				img{
+					display:block;
+					margin:0 auto;
+				}
+			}
+			li.active{
+				position:relative;
+				left:25px;
+				z-index:3;
+				&:hover{
+					transform:scale(1.05);
+				}
+				img{
+					box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+				}
+			}
+			li.first{
+				opacity:0.6;
+				z-index:2;
+				left:20px;
+				top:35px;
+				@include com1400(){
+					left:0px;
+				}
+				@include pad610(){
+					top:15px;
+				}
+			}
+			li.second{
+				opacity:0.2;
+				z-index:1;
+				right:-20px;
+				top:20px;
+				@include com1400(){
+					right:-50px;
+					left:59px;
+				}
+
+			}
+		}
+	}
+}
+
+.workList{
+	font-size: 0;
+	margin: 50px 0;
+	ul li {
+		margin: 30px 0;
+		position: relative;
+		@include pad768(){
+			border: 1px solid #ccc;
+    	box-shadow: 10px 10px 0px rgba(233, 233, 233, 1);
+			margin: 50px 0;
+		}
+	}
+	&__content{
+		font-size: 15px;
+		width: 50%;
+		display: inline-block;
+		padding: 0 0 0 30px;
+		vertical-align: middle;
+		@include pad768(){
+			width: 100%;
+			padding: 15px;
+		}
+		&:before{
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 95%;
+			background: #f1f1f1;
+			z-index: -1;
+			left: 0;
+			bottom: -20px;
+			@include pad1024(){
+				display: none;
+			}
+		}
+		h3 {
+			font-size:22px;
+			color:#2e2e2e;
+			font-weight: normal;
+			margin: 10px 0;
+		}
+		p{
+			color:#2e2e2e;
+			font-size:$fontSmall;
+			line-height:1.8;
+			margin:15px 0 0;
+		}
+	}
+	&__imgbox{
+		font-size: 15px;
+		width: 40%;
+		display: inline-block;
+		vertical-align: middle;
+		@include pad768(){
+			width: 100%;
+			margin: 0 auto;
+			display: block;
+		}
+	}
+	&__tag{
+		margin: 10px 0;
+		span{
+			font-size: 13px;
+			border-radius: 5px;
+			background: #ccc;
+			color: #444;
+			display: inline-block;
+			padding: 5px;
+			margin: 3px 5px;
+		}
+	}
+	&__btn{
+		border: 1px solid $mainColor;
+    border-radius: 5px;
+		padding: 3px;
+		color: $mainColor;
+		margin: 14px 0 0;
+		display: block;
+		max-width: 80px;
+		text-align: center;
+		font-size: 13px;
+		&:hover{
+			background: $mainColor;
+			color:#fff;
+		}
+		@include pad768(){
+			margin: 14px auto 0;
+		}
+	}
+}
+
+/*聯咯contact*/
+.contact.bg01{
+	background:#f3f3f3;
+	text-align:center;
+	padding:40px 0 70px 0;
+	color:#2e2e2e;
+	@include com1400(){
+		padding: 20px 0 60px 0;
+	}
+	.title{
+		color:$mainColor;
+		&:before{
+			content: '04';
+		}
+	}
+	.inbox>p{
+		margin:40px 0 50px 0;
+		font-size:$fontSmall;
+		line-height:1.8;
+		@include phone480(){
+			margin:30px 0 40px 0;
+		}
+	}
+	ul{
+		position:relative;
+		li{
+			display:inline-block;
+			a{
+				display:block;
+				text-align:center;
+				img{
+					width:60px;
+				}
+				span{
+					display:block;
+					color:#2e2e2e;
+					font-size:13px;
+				}
+			}
+		}
+		li:first-child{
+			margin-right: 70px;
+			@include phone480{
+				margin-right: 40px;
+			}
+		}
+		li:last-child{
+			margin-left: 70px;
+			@include phone480{
+				margin-left: 40px;
+			}
+		}
+		&:after{
+			content: "";
+		    width: 1px;
+		    height: 80px;
+		    background: #cacaca;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    right: 0;
+		    margin: 0 auto;
+		}
+	}
+}
+
+/*footer*/
+footer{
+	position: relative;
+	background: #333333;
+	color:#fff;
+	padding:20px 0;
+	text-align:center;
+	.inbox a {
+		display:block;
+		span{
+			position:relative;
+			z-index: 2;
+			display:block;
+			color:#eee;
+			transition:all 0.35s ease-in-out;
+		}
+		span:last-child{
+			padding:10px 0 0 0;
+			font-family: 'Raleway', sans-serif;
+		}
+		&:hover span{
+			color:#f4e320;
+		}
+		&:after{
+			content: "";
+			position:absolute;
+			left:0;
+			right:0;
+			margin:0 auto;
+			top:0;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 50px 60px 50px;
+			border-color: transparent transparent #333 transparent;
+			transition:all 0.35s ease-in-out;
+			z-index: 1;
+		}
+		&.up:after{
+		    animation-name: up;
+  			animation-duration: 1.5s;
+  			animation-iteration-count: infinite;
+		}
+	}
+}
+/*textAnimate*/
+.aniTxt {
+  position: relative;
+  transition:all 1s ease-in-out;
+}
+
+.aniTxt .text-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.aniTxt .letter {
+  transform-origin: 50% 100%;
+  display: inline-block;
+}
+
+
+@keyframes up {
+  from,
+  to {
+    transform: translateY(0px);
+  }
+
+  10%,80%{
+    transform: translateY(-20px);
+  }
+
+
+  40% {
+    transform: translateY(-40px);
+  }
+}
+

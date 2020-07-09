@@ -1,0 +1,86 @@
+@charset "utf-8";/*==【基本設定】==*/
+html{font-size:100%;}
+html,body,div,p,input,form,fieldset,figure,h1,h2,h3,h4,h5,h6{margin:0;padding:0;list-style:none;}
+address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:normal;}
+button,input,textarea,select{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle;font:13px/1.231 Arial,'微軟正黑體',Helvetica,sans-serif;}
+button,input{line-height:normal;*overflow:visible;font:13px/1.231 Arial,'微軟正黑體',Helvetica,sans-serif;}
+table button,table input{*overflow:auto;}
+button,input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button;}
+object,embed{outline:0;}
+caption{text-align:left;}
+table{border-collapse:collapse;border-spacing:0;}
+img{border:0px;-ms-interpolation-mode:bicubic;vertical-align:middle;}
+em{}
+del{color:#999;}
+br{clear:both;}
+p{word-wrap:break-word;}
+blockquote{margin-top:0;margin-bottom:10px;}
+a,img{text-decoration:none;color:#00B8EC;outline:none;behavior:expression(this.onFocus=this.blur());}
+a:hover,img:hover{color:#225E86;text-decoration:none;}
+a,a:hover{-webkit-transition:all .35s ease-in-out;-moz-transition:all .35s ease-in-out;-o-transition:all .35s ease-in-out;-ms-transition:all .35s ease-in-out;transition:all .35s ease-in-out;}
+body{font:13px/1.231 Arial,'微軟正黑體',Helvetica,sans-serif;}
+
+/*==【HTML5基本設定】==*/
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
+audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
+audio:not([controls]){display:none;}[hidden]{display:none;}
+
+/*==【印刷樣式】==*/
+abbr[title]{border-bottom:1px dotted;}
+b,strong{font-weight:bold;}
+blockquote{margin:1em 40px;}
+dfn{font-style:italic;}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0;}
+ins{background:#ff9;color:#000;text-decoration:none;}
+mark{background:#ff0;color:#000;font-style:italic;font-weight:bold;}
+
+/*==【重新宣告固定寬度字體系列】==*/
+pre,code,kbd,samp{font-family:monospace,monospace;_font-family:'courier new',monospace;font-size:1em;}
+
+/*==【改善所有瀏覽器中預先格式化之文字的可讀性】==*/
+pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word;}
+q{quotes:none;}
+q:before,q:after{content:"";content:none;}
+small{font-size:85%;}
+
+/*==【放置下標字和上標字內容，而不影響行高】==*/
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}
+sup{top:-0.5em;}
+sub{bottom:-0.25em;}
+
+/*==【修正 IE9 中未隱藏的溢位】==*/
+svg:not(:root){overflow:hidden;}
+
+/*==【圖表】==*/
+figure{margin:0;}
+
+/*==【list】==*/
+ul, ol, li{list-style:none;margin:0;padding:0;}
+/*==【表單】==*/
+form{margin:0;}
+fieldset{border:0;margin:0;padding:0;}
+label{cursor:pointer;}
+legend{border:0;*margin-left:-7px;padding:0;}
+
+/*==【一致的方塊大小和外觀】==*/
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}
+input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}
+
+/*==【移除 FF3/4 中的內部內距和邊框】==*/
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+
+/*==【移除 IE6/7/8/9 中的預設垂直捲軸、僅允許垂直調整大小】==*/
+textarea{overflow:auto;resize:vertical;}
+
+/*==【表單有效性的色彩】==*/
+input:valid,textarea:valid{}
+input:invalid,textarea:invalid{background-color:#f0dddd;}
+
+
+/*==【clearfix】==*/
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+*html>body .clearfix{display:inline-block;width:100%;}
+*html .clearfix{height:1%;/* End hide from IE-mac */}
+*+html .clearfix{min-height:1%;/* ie7 hack*/}
+.clear{clear:both;font-size:0px;height:0px;}
