@@ -15,6 +15,7 @@ const buffer = require('vinyl-buffer')
 const pug = require('gulp-pug')
 const image = require('gulp-image');
 const connect = require('gulp-connect')
+const merge = require('gulp-merge');
 
 // function defaultTask (cb) {
 //   console.log('Let\'s, start')
@@ -33,24 +34,28 @@ function sassToCss () {
     .pipe(gulp.dest('./docs/css'))
 }
 
-function bundleJS () {
+function bundleJS (cb) {
   // 使用 broserify 非 gulp-broserify，因為 gulp-broserify 已不在維護（這牽涉到 gulp 的原理 stram)
   // babelify 為 babel 為 broserify 提供的 babel 工具
-
-  return browserify('./js/index.js')
-    .transform('babelify', { presets: ["@babel/preset-env"] }) // babel
-    .bundle() // 編譯 require
-    .pipe(source('index.js')) // 用 vinyl-source-stream 將 node stream 轉為 vinyl stream
-    .pipe(buffer())  // uglify 只支援 buffer，所以先作轉換
-    .pipe(uglify())
-    .pipe(rename('index.bundle.js')) // 重命名
-    .pipe(gulp.dest('./docs'))
+  const tasks = ['./js/index.js', './js/container.js'].map((path) => {
+    const filename = path.split('/').pop();
+    return browserify(path)
+      .transform('babelify', { presets: ["@babel/preset-env"] }) // babel
+      .bundle() // 編譯 require
+      .pipe(source(filename)) // 用 vinyl-source-stream 將 node stream 轉為 vinyl stream
+      .pipe(buffer())  // uglify 只支援 buffer，所以先作轉換
+      .pipe(uglify())
+      .pipe(rename({
+        suffix: '.bundle'
+      })) // 重命名
+      .pipe(gulp.dest('./docs'))
+  });
+  return merge(tasks, cb());
 }
 
 function pugToHtml () {
-  return gulp.src('index.pug')
+  return gulp.src('html/*.pug')
     .pipe(pug({ pretty: true }))
-    .pipe(rename('index.html'))
     .pipe(gulp.dest('./docs'))
 }
 
@@ -73,8 +78,8 @@ function livereload (cb) {
 
 function watch (cb) {
   gulp.watch('sass/*.scss', sassToCss)
-  gulp.watch('js/index.js', bundleJS)
-  gulp.watch('index.pug', pugToHtml)
+  gulp.watch('js/*.js', bundleJS)
+  gulp.watch('html/*.pug', pugToHtml)
   cb()
 }
 

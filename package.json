@@ -11,6 +11,8 @@
   "author": "tim",
   "license": "ISC",
   "dependencies": {
+    "event-stream": "^4.0.1",
+    "gulp-merge": "^0.1.1",
     "pixi.js": "^5.0.0-rc",
     "spritesheet-js": "^1.2.6"
   },
